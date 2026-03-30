@@ -159,7 +159,7 @@ public class Drivetrain {
     // readme (1.4)
 
 	/**
-	 * Okay, danny did not make this documentation. This method is cooked AF. Feel free to try and fix it, but good luck.
+	 * Okay, Danny did not make this documentation. This method is cooked AF. Feel free to try and fix it, but good luck.
 	 * @deprecated What the hell is going on
 	 * @author Sunny-19-19
 	 */

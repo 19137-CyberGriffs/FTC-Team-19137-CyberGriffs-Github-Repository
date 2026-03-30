@@ -12,6 +12,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.config.Config;
 
+/**
+ * A class for the elevator system in the 2024-2025 season "Into the Deep"
+ * @deprecated No longer relevant
+ * @author Sunny-19-19
+ */
 public class Elevator {
 
     //cheeseburger
