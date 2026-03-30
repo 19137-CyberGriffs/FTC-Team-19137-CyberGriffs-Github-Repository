@@ -16,6 +16,10 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.config.Config;
 
+/**
+ * Wraps the motors controlling movement into an easy-to-use drivetrain object.
+ * @author Sunny-19-19
+ */
 public class Drivetrain {
 
     // DECLARE OBJECTS
@@ -153,6 +157,12 @@ public class Drivetrain {
     // Drives the robot using the encoder. Refer to the readme for more info about encoders
     // The arguments "drive" and "strafe" should be in millimeters
     // readme (1.4)
+
+	/**
+	 * Okay, danny did not make this documentation. This method is cooked AF. Feel free to try and fix it, but good luck.
+	 * @deprecated What the hell is going on
+	 * @author Sunny-19-19
+	 */
     public void driveByEncoder(double drive, double strafe, double turn) {
 
 
