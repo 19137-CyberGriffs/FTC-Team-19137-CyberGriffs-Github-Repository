@@ -16,15 +16,20 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.util.ParallelMotion;
-import org.firstinspires.ftc.teamcode.vision.AprilTagManager;
+//import org.firstinspires.ftc.teamcode.vision.AprilTagManager;
 
+/**
+ * @deprecated
+ * @author Sunny-19-19
+ * @author JacksonClack4
+ */
 @Autonomous(name = "Three Sample - Autonomous")
 public class AutonomousV2 extends LinearOpMode {
 
     Drivetrain drivetrain;
     Elevator elevator;
     Intake intake;
-    AprilTagManager aprilTag;
+    //AprilTagManager aprilTag;
     ElapsedTime timer;
 
     @Override
@@ -33,7 +38,7 @@ public class AutonomousV2 extends LinearOpMode {
 	   drivetrain = new Drivetrain(hardwareMap);
 	   elevator = new Elevator(hardwareMap);
 	   intake = new Intake(hardwareMap);
-	   aprilTag = new AprilTagManager(hardwareMap);
+	   //aprilTag = new AprilTagManager(hardwareMap);
 	   timer = new ElapsedTime();
 
 	   drivetrain.initAuton(this);

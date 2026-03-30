@@ -17,6 +17,11 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 //TODO: Does jackson even read my todos?
 
+/**
+ * @deprecated
+ * @author Sunny-19-19
+ * @author JacksonClack4
+ */
 @TeleOp(name = "Default - OpMode")
 public class DefaultOpMode extends LinearOpMode {
 

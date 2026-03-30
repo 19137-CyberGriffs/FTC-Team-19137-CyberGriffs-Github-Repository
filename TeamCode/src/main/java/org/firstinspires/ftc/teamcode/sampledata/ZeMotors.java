@@ -4,6 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+/**
+ * @deprecated
+ * @author APersonThatDoesThings
+ * @author Test-Account1230
+ * @author rclairoll
+ * @author lehmann45390
+ */
 @TeleOp(name = "You Drive")
 public class ZeMotors extends LinearOpMode {
     @Override
