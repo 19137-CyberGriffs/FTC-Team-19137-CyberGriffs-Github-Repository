@@ -3,7 +3,12 @@ package org.firstinspires.ftc.teamcode.util;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
+import org.firstinspires.ftc.teamcode.subsystems.Odometry;
 
+/**
+ * An object used by {@link Odometry} to create virtual points on the play field that can be used to get important relative information from
+ * @author YesItIsEvan
+ */
 public class PointOfInterest {
     private String name;
     private Pose2D pose;

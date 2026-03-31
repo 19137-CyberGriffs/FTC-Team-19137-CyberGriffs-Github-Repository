@@ -23,6 +23,10 @@
 
 	*/
 
+	/**
+	 * Documentation is inside the class file
+	 * @author Sunny-19-19
+	 */
     public class ControllerManager {
 
 	   private final Gamepad player1;

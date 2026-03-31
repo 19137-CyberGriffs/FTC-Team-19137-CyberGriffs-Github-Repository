@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"org.firstinspires.ftc.teamcode"},{"l":"org.firstinspires.ftc.teamcode.config"},{"l":"org.firstinspires.ftc.teamcode.sampledata"},{"l":"org.firstinspires.ftc.teamcode.subsystems"},{"l":"org.firstinspires.ftc.teamcode.sunny"},{"l":"org.firstinspires.ftc.teamcode.util"}];updateSearchResults();

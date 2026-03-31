@@ -4,11 +4,10 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 
-/*
-    The purpose of this class is to have
-    all the relevant parameters in one place
+/**
+ * The purpose of this class is to have all the relevant parameters in one place
+ * @author Sunny-19-19
  */
-
 public class Config {
 
     public static class Drivetrain{

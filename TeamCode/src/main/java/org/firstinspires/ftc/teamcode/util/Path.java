@@ -19,7 +19,23 @@ public class Path {
     private Pose2D robotCurrent;
     private Pose2D robotTarget;
 
-    public enum traceMode {STOP_WHEN_COMPLETE, ROUND_LOOP, REVERSING_LOOP};
+    /**
+     * Modes for how the bot will follow the waypoints
+     */
+    public enum traceMode {
+        /**
+         * Straight forward, the bot will stop once it reaches the final waypoint
+         */
+        STOP_WHEN_COMPLETE,
+        /**
+         * Once the bot reaches its final waypoint, it will go directly back to the first waypoint
+         */
+        ROUND_LOOP,
+        /**
+         * Once the bot reaches its final waypoint, it will follow the path in reverse order and then return to a regular order once it reaches the first waypoint again
+         */
+        REVERSING_LOOP
+    };
     private traceMode mode = traceMode.STOP_WHEN_COMPLETE;
 
     private enum Order {FORWARD, REVERSE};
@@ -44,15 +60,42 @@ public class Path {
     private double strafeTuneCoe = 1.4;
     private double turnTuneCoe = 0.47;
 
-    public enum Ahead {SLOW, STANDARD, FLANK};// Subnautica reference hehe
+    /**
+     * Speed modes for the robot that are referred to in the same way as the speed modes for the cyclops in Subnautica.
+     */
+    public enum Ahead {
+        /**
+         * A slow and controllable speed for careful maneuvers
+         */
+        SLOW,
+        /**
+         * Whenever the bot must move at a reasonable pace without too much risk in the event of an error
+         */
+        STANDARD,
+        /**
+         * WE ARE NO LONGER COMPROMISING AND ARE GOING FULL {@literal F@&KIN} THROTTLE, HOPE YOU BROUGHT A FULLY CHARGED BATTERY
+         */
+        FLANK
+    };
     private Ahead speedMode = Ahead.STANDARD;
 
+    /**
+     * Forms a new path for you to forge. Use the {@code Path.addWaypoint(Waypoint)} method to add new points along the path.
+     * @param currentRunTime_s The current runtime of the Op-mode
+     * @param hardwareMap Hardware map for the voltage sensor to give you better drive suggestions
+     */
     public Path(double currentRunTime_s, HardwareMap hardwareMap){
         robotCurrent = new Pose2D(DistanceUnit.METER,0,0, AngleUnit.DEGREES,0);
         voltage = hardwareMap.get(VoltageSensor.class, "Control Hub");
         runTime = currentRunTime_s;
     }
 
+    /**
+     * Forms a new path for you to forge. Use the {@code Path.addWaypoint(Waypoint)} method to add new points along the path.
+     * @param current The current Pose2D of the bot for presetting off of (0,0)
+     * @param currentRunTime_s The current runtime of the Op-mode
+     * @param hardwareMap Hardware map for the voltage sensor to give you better drive suggestions
+     */
     public Path(Pose2D current, double currentRunTime_s, HardwareMap hardwareMap){
         robotCurrent = current;
         voltage = hardwareMap.get(VoltageSensor.class, "Control Hub");
@@ -129,7 +172,7 @@ public class Path {
      * Appends a new waypoint at the end of the path
      * <p>
      * Note: Use during initialization
-     * @param newWaypoint
+     * @param newWaypoint A new instance of the {@link Waypoint} class for {@link Path} to organize alongside the current waypoints.
      */
     public void addWaypoint(Waypoint newWaypoint){
         Waypoint[] newWaypoints = new Waypoint[waypoints.length+1];
@@ -142,7 +185,7 @@ public class Path {
      * Sets how the bot will follow the path.
      * Round loops will have the bot go back to the first waypoint once it has reached the last waypoint,
      * meanwhile reversing loops will have the bot reverse the order in which it follows the path.
-     * @param followMode
+     * @param followMode The trace mode defined by the {@link traceMode} enum
      */
     public void setTraceMode(traceMode followMode){
         mode = followMode;
@@ -155,8 +198,8 @@ public class Path {
      * <p>
      * Default: 5 cm, 1 degree
      * </p>
-     * @param cm
-     * @param degrees
+     * @param cm Coordinate tolerance in centimeters
+     * @param degrees Rotational tolerance in degrees
      */
     public void setTolerance(double cm, double degrees){
         cartesianTolerance = cm/100;
@@ -170,9 +213,9 @@ public class Path {
      * <p>
      * Suggestion: This method is not really needed as whenever changing speed modes, the tuning variables already get changed
      * accordingly, so do not use this method unless absolutely necessary
-     * @param drive
-     * @param strafe
-     * @param turn
+     * @param drive Drive (forward and backward) tuning coefficient
+     * @param strafe Strafe (Crab left and right) tuning coefficient
+     * @param turn Turn (Rotate left and right) tuning coefficient
      */
     public void setDriveTune(double drive, double strafe, double turn){
         driveTuneCoe = drive;
@@ -184,7 +227,7 @@ public class Path {
      * Sets the speed mode of the bot and will adjust the drive tuning accordingly. This also impacts which
      * function Path will use to determine drive power so it is suggested to use this method instead of {@code Path.setPower()}.
      * <p>
-     * @param ahead
+     * @param ahead The speed mode defined by the {@link Ahead} enum
      */
     public void setSpeedMode(Ahead ahead){
         speedMode = ahead;
@@ -194,31 +237,48 @@ public class Path {
      * Will set the coefficient that determines the bots overall drive power.
      * <p>
      *     NOT TO BE USED TO SET OVERALL SPEED!
-     * @param power
+     * @param power The power multiplier between (0,1)
      */
     public void setPower(double power){
         powerCoe = power;
     }
+
+    /**
+     * Gives a suggested drive power after considering the distance to the waypoint, drive power, and speed mode
+     * @return Suggested drive power
+     */
     public double getSuggestedDrive(){
         return suggestedDrive;
     }
 
+    /**
+     * Gives a suggested strafe power after considering the distance to the waypoint, drive power, and speed mode
+     * @return Suggested strafe power
+     */
     public double getSuggestedStrafe() {
         return suggestedStrafe;
     }
 
+    /**
+     * Gives a suggested turn power after considering the distance to the waypoint, drive power, and speed mode
+     * @return Suggested turning power
+     */
     public double getSuggestedTurn() {
         return suggestedTurn;
     }
 
     /**
-     *
-     * @return The index of the waypoint the bot is currently going to inside the waypoint array that {@link Path} uses.
+     * Gives an integer value representing the index of the waypoint that the bot is currently targeting.
+     * @return The index of the bot's current waypoint inside the waypoint array that {@link Path} stores.
      */
     public int getCurrentWaypoint(){
         return currentWaypoint;
     }
 
+    /**
+     * If the bot is set to STOP_WHEN_COMPLETE then this condition will turn false once the bot has reached its final waypoint
+     * @return whether the bot is still running the mission
+     */
     public boolean isRunning(){
         return !stop;
     }
