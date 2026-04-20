@@ -4,9 +4,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.firstinspires.ftc.teamcode.DecodeTeleOp;
 import org.firstinspires.ftc.teamcode.util.PointOfInterest;
-import org.firstinspires.ftc.teamcode.util.Waypoint;
 
 import java.util.NoSuchElementException;
 
@@ -17,11 +15,14 @@ public class Odometry {
     private int fullRobotRotations = 0;
     private PointOfInterest[] POIs = new PointOfInterest[0];
 
+    public enum Alliance {BLUE, RED};
+    Alliance alliance = Alliance.BLUE;
+
     //Deprecated
     private double basketX;
     private double basketY;
 
-    public Odometry(Pose2D initialPos, HardwareMap hardwareMap){
+    public Odometry(Pose2D initialPos, HardwareMap hardwareMap, Alliance alliance){
         pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, "pinpoint");
         pinpoint.resetPosAndIMU();
         pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);

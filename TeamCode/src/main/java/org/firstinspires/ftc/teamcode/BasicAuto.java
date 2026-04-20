@@ -33,7 +33,7 @@ import org.firstinspires.ftc.teamcode.util.Waypoint;
 @Autonomous(name="BasicAuto")
 public class BasicAuto extends LinearOpMode {
 
-    DecodeTeleOp.Alliance alliance =  DecodeTeleOp.Alliance.BLUE;
+    Odometry.Alliance alliance = Odometry.Alliance.BLUE;
 
     Drivetrain drivetrain;
     Odometry odometry;
@@ -54,7 +54,7 @@ public class BasicAuto extends LinearOpMode {
         drivetrain.setSmoothMotion(true);
 
         //Odometry Constructors
-        odometry = new Odometry(new Pose2D(DistanceUnit.METER,0,0,AngleUnit.DEGREES,0), hardwareMap);
+        odometry = new Odometry(new Pose2D(DistanceUnit.METER,0,0,AngleUnit.DEGREES,0), hardwareMap, alliance);
 
         //Path Constructors
         path = new Path(getRuntime(),hardwareMap);
@@ -70,6 +70,10 @@ public class BasicAuto extends LinearOpMode {
         path.addWaypoint(new Waypoint(0.5,0.5,-45));
         path.addWaypoint(new Waypoint(0,1,0));
         path.addWaypoint(new Waypoint(0,0,0));
+
+        path.addWaypoint(new Waypoint(0,0,0));
+        path.addWaypoint(new Waypoint(1.9,-0.229,0,6));
+        path.addWaypoint(new Waypoint(1.9,-2.02,0,6));
 
         //Confirming initialization
         telemetry.addLine("Welcome Aboard Captain,");

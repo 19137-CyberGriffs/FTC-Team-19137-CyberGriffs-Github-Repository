@@ -16,7 +16,7 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FO
 DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.sampledata;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -38,6 +38,11 @@ import org.firstinspires.ftc.teamcode.util.Waypoint;
 
 import java.util.*;
 
+/**
+ * @deprecated
+ * @author YesItIsEvan
+ * @author JacksonClack4
+ */
 @Autonomous(name="DecodeAuto")
 public class DecodeAuto extends LinearOpMode {
 
