@@ -71,6 +71,7 @@ public class BasicAuto extends LinearOpMode {
         path.addWaypoint(new Waypoint(0,1,0));
         path.addWaypoint(new Waypoint(0,0,0));
 
+        //Lesson
         path.addWaypoint(new Waypoint(0,0,0));
         path.addWaypoint(new Waypoint(1.9,-0.229,0,6));
         path.addWaypoint(new Waypoint(1.9,-2.02,0,6));
