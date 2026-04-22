@@ -51,7 +51,7 @@ public class BasicTeleOp extends LinearOpMode {
 
 
         //Initialization Complete
-        telemetry.speak("Welcome Aboard Captain");
+        telemetry.addLine("Welcome Aboard Captain");
         telemetry.addData("All Systems","Online");
         while (opModeIsActive()) {  //Loop while teleop is active, DO NOT EXIT
 
